@@ -1,0 +1,124 @@
+doctype html
+html
+    <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""><![endif]-->
+    <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang=""><![endif]-->
+    <!--[if IE 8]><html class="no-js lt-ie9" lang=""><![endif]-->
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-compatible', content='IE=11')
+        meta(http-equiv='X-UA-Compatible', content='IE=EmulateIE9')
+        meta(http-equiv='X-UA-Compatible', content='IE=9; IE=8; IE=7')
+        meta(http-equiv='X-UA-Compatible', content='IE=EmulateIE8')
+        meta(http-equiv='X-UA-Compatible', content='IE=Edge')
+        meta(http-equiv='X-UA-Compatible', content='IE=Edge,chrome=1')
+        title Deposits
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/images/ui-icons_444444_256x240.png")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/images/ui-icons_555555_256x240.png")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/images/ui-icons_777620_256x240.png")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/images/ui-icons_777777_256x240.png")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/images/ui-icons_cc0000_256x240.png")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/images/ui-icons_ffffff_256x240.png")
+    body
+        .container
+            .row
+                .col-xs-9
+                    h1 Transactions
+                    .panel.panel-info
+                        .panel-heading
+                            h3.panel-title Transaction Search
+                        .panel-body#search-transaction
+                            .col-xs-12
+                                a.glyphicon.glyphicon-exclamation-sign.pull-right(type="button" data-toggle="tooltip"
+                                data-placement="left" title="At least one of the folowing" +
+                                " fields should be fild out: company," +
+                                " pin, date for and date to, processor, ccr brand" +
+                                "profile, ccr, transaction type, transaction status" v-if="!searchTransaction")
+                            form
+                                .col-xs-12.col-lg-2
+                                    .form-group
+                                        label() Company
+                                        select.form-control(v-model="company")
+                                            option
+                                            option MyBookie
+                                .col-xs-12.col-lg-2
+                                    .form-group
+                                        label() PIN
+                                        input(type="text" v-model="pin" placeholder="MB4017" class="form-control")
+                                .col-xs-12.col-lg-3
+                                    .form-group
+                                        label() Date For
+                                        input(type="text" data-date="" class="form-control" id="dateFor" v-model="datefor" @blur="bluFor")
+                                .col-xs-12.col-lg-3
+                                    .form-group
+                                        label Date To
+                                        input(type="text" v-model="dateto" class="form-control" id="dateTo")
+
+
+                                //begin template
+                                // End template
+                                .col-xs-12.col-lg-2
+                                    .form-group
+                                        label Processor
+                                        select.form-control(v-model="procesor")
+                                            option
+                                            option All
+                                            option GPproccssor
+                                            option coffeProccesor
+                                .col-xs-12.col-lg-2
+                                    .form-group
+                                        label CCR
+                                        select.form-control(v-model="ccrbrand")
+                                            option
+                                            option Visa
+                                            option MasterCard
+                                .col-xs-12.col-lg-3
+                                    .form-group
+                                        label Customer Profile
+                                        select.form-control(v-model="profile")
+                                            option
+                                            option Any Profile
+                                            option Blocked
+                                            option Bronze
+                                            option Gold
+                                            option Platinum
+
+                                .col-xs-12.col-lg-3
+                                    .form-group
+                                        label Credit Card
+                                        input.form-control(type="text" v-model="ccr")
+
+                                .col-xs-12.col-lg-3
+                                    .form-group
+                                        label Transaction Type
+                                        select.form-control(v-model="transactionType")
+                                            option
+                                            option Credit Card
+                                            option Bitcoin
+                                            option Check
+                                            option Manual
+                                .col-xs-12.col-lg-3
+                                    .form-group
+                                        label Transaction Status
+                                        select.form-control(v-model="transactionStatus")
+                                            option
+                                            option Declined
+                                            option Approved
+                                            option Pending
+                                            option Fraud
+                                .col-xs-12
+                                    .form-group
+                                    button.btn.btn-danger.pull-right(v-if="searchTransaction") Search
+                                .col-xs-12
+                                    h1 Data info
+                                    .form-group
+                                        pre {{ $data | json }}
+
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js")
+        script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+        script(src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"
+        integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+        crossorigin="anonymous")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.7/vue.js")
+        script(src="js/deposits.js")

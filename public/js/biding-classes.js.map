@@ -1,0 +1,1 @@
+{"version":3,"sources":["biding-classes.js"],"names":["Vue","el","data","nombre"],"mappings":"AAAA,IAAIA,GAAJ,CAAQ;AACJC,QAAI,MADA;AAEJC,UAAM;AACFC,gBAAQ;AADN;AAFF,CAAR","file":"biding-classes.js","sourcesContent":["new Vue({\n    el: '#app',\n    data: {\n        nombre: ''\n    }\n});"]}

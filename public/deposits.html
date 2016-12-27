@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html><!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang=""><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang=""><![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-compatible" content="IE=11">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>Deposits</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/images/ui-icons_444444_256x240.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/images/ui-icons_555555_256x240.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/images/ui-icons_777620_256x240.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/images/ui-icons_777777_256x240.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/images/ui-icons_cc0000_256x240.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/images/ui-icons_ffffff_256x240.png">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-9">
+          <h1>Transactions</h1>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Transaction Search</h3>
+            </div>
+            <div class="panel-body" id="search-transaction">
+              <div class="col-xs-12"><a class="glyphicon glyphicon-exclamation-sign pull-right" type="button" data-toggle="tooltip" data-placement="left" title="At least one of the folowing fields should be fild out: company, pin, date for and date to, processor, ccr brandprofile, ccr, transaction type, transaction status" v-if="!searchTransaction"></a></div>
+              <form>
+                <div class="col-xs-12 col-lg-2">
+                  <div class="form-group">
+                    <label>Company</label>
+                    <select class="form-control" v-model="company">
+                      <option></option>
+                      <option>MyBookie</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-lg-2">
+                  <div class="form-group">
+                    <label>PIN</label>
+                    <input class="form-control" type="text" v-model="pin" placeholder="MB4017">
+                  </div>
+                </div>
+                <div class="col-xs-12 col-lg-3">
+                  <div class="form-group">
+                    <label>Date For</label>
+                    <input class="form-control" type="text" data-date="" id="dateFor" v-model="datefor" @blur="bluFor">
+                  </div>
+                </div>
+                <div class="col-xs-12 col-lg-3">
+                  <div class="form-group">
+                    <label>Date To</label>
+                    <input class="form-control" type="text" v-model="dateto" id="dateTo">
+                  </div>
+                </div>
+                <!--begin template-->
+                <!-- End template-->
+                <div class="col-xs-12 col-lg-2">
+                  <div class="form-group">
+                    <label>Processor</label>
+                    <select class="form-control" v-model="procesor">
+                      <option></option>
+                      <option>All</option>
+                      <option>GPproccssor</option>
+                      <option>coffeProccesor</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-lg-2">
+                  <div class="form-group">
+                    <label>CCR</label>
+                    <select class="form-control" v-model="ccrbrand">
+                      <option></option>
+                      <option>Visa</option>
+                      <option>MasterCard</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-lg-3">
+                  <div class="form-group">
+                    <label>Customer Profile</label>
+                    <select class="form-control" v-model="profile">
+                      <option></option>
+                      <option>Any Profile</option>
+                      <option>Blocked</option>
+                      <option>Bronze</option>
+                      <option>Gold</option>
+                      <option>Platinum</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-lg-3">
+                  <div class="form-group">
+                    <label>Credit Card</label>
+                    <input class="form-control" type="text" v-model="ccr">
+                  </div>
+                </div>
+                <div class="col-xs-12 col-lg-3">
+                  <div class="form-group">
+                    <label>Transaction Type</label>
+                    <select class="form-control" v-model="transactionType">
+                      <option></option>
+                      <option>Credit Card</option>
+                      <option>Bitcoin</option>
+                      <option>Check</option>
+                      <option>Manual</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-lg-3">
+                  <div class="form-group">
+                    <label>Transaction Status</label>
+                    <select class="form-control" v-model="transactionStatus">
+                      <option></option>
+                      <option>Declined</option>
+                      <option>Approved</option>
+                      <option>Pending</option>
+                      <option>Fraud</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="form-group"></div>
+                  <button class="btn btn-danger pull-right" v-if="searchTransaction">Search</button>
+                </div>
+                <div class="col-xs-12">
+                  <h1>Data info</h1>
+                  <div class="form-group">
+                    <pre>{{ $data | json }}</pre>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.7/vue.js"></script>
+    <script src="js/deposits.js"></script>
+  </body>
+</html>
